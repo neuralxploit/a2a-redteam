@@ -16,7 +16,7 @@ pip install -r requirements.txt
 Pull an Ollama model (if you haven't already):
 
 ```bash
-ollama pull llama3.1:8b
+ollama pull kimi-2.5:cloud
 ```
 
 ## CLI Reference
@@ -24,7 +24,7 @@ ollama pull llama3.1:8b
 | Argument | Short | Default | Description |
 |----------|-------|---------|-------------|
 | `--target` | `-t` | *required* | Target URL (A2A, Ollama, OpenAI-compat, any HTTP endpoint) |
-| `--model` | `-m` | `lfm2.5-thinking:latest` | Ollama model powering the red team agent |
+| `--model` | `-m` | `kimi-2.5:cloud` | Ollama model powering the red team agent |
 | `--ollama-url` | | `http://localhost:11434` | Ollama server for the attacker LLM |
 | `--turns` | `-n` | `15` | Max conversation turns |
 | `--prompt` | `-p` | | Custom first message |

@@ -3332,7 +3332,7 @@ TOOL_DISCOVERY_PROMPTS = [
 
 
 class A2ARedTeamAgent:
-    def __init__(self, ollama_model: str = "lfm2.5-thinking:latest", ollama_url: str = "http://127.0.0.1:11434/", reasoning: bool = False, oast_url: str = None, deep_token_testing: bool = False, temperature: float = 0.8):
+    def __init__(self, ollama_model: str = "kimi-2.5:cloud", ollama_url: str = "http://127.0.0.1:11434/", reasoning: bool = False, oast_url: str = None, deep_token_testing: bool = False, temperature: float = 0.8):
         self.ollama_model = ollama_model
         self.ollama_url = ollama_url
         self.reasoning = reasoning  # Enable extended reasoning/chain-of-thought
@@ -13079,7 +13079,7 @@ async def main():
     
     parser = argparse.ArgumentParser(description="A2A Red Team Agent - Adaptive Security Testing")
     parser.add_argument("--target", "-t", required=True, help="Target A2A URL or API endpoint (e.g., https://api.x.ai/v1)")
-    parser.add_argument("--model", "-m", default="lfm2.5-thinking:latest", help="Ollama model for red teaming (dolphin-mistral, llama3.1:8b, jimscard/blackhat-hacker:v2)")
+    parser.add_argument("--model", "-m", default="kimi-2.5:cloud", help="Ollama model for red teaming (kimi-2.5:cloud, kimi-1t:cloud, dolphin-mistral, llama3.1:8b)")
     parser.add_argument("--ollama-url", default="http://localhost:11434", help="Ollama server URL for red team LLM (default: http://localhost:11434)")
     parser.add_argument("--turns", "-n", type=int, default=15, help="Max conversation turns")
     parser.add_argument("--prompt", "-p", help="Start with custom first message")
