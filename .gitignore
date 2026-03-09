@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.db-journal
+*.egg-info/
+dist/
+build/
+.env
+*.log
+a2a_redteam_*.json
+.claude/
