@@ -16,7 +16,7 @@ pip install -r requirements.txt
 Pull an Ollama model (if you haven't already):
 
 ```bash
-ollama pull kimi-2.5:cloud
+ollama run kimi-k2.5:cloud
 ```
 
 ## CLI Reference
