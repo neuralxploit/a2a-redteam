@@ -11526,20 +11526,31 @@ Only output the JSON block, nothing else."""
                     break
                 continue
             
-            # Reset error counter on success
+            # Reset error counters on success
             self.consecutive_errors = 0
-            
+            if hasattr(self, '_backend_errors'):
+                self._backend_errors = 0
+
             # Detect server/backend errors (mostly heuristic, fast)
             error_check = await self.is_server_error(agent_response)
             
             if error_check["is_error"]:
-                console.print(f"\n[bold red]TARGET BACKEND ERROR DETECTED[/bold red]")
-                console.print(f"[red]Reason: {error_check['reason']}[/red]")
-                console.print(f"[dim]Response preview: {agent_response[:300]}...[/dim]")
-                console.print(f"\n[bold red]STOPPING: Target's backend cannot process requests properly.[/bold red]")
-                self.target_info["backend_error"] = agent_response
-                self.target_info["backend_error_reason"] = error_check["reason"]
-                break
+                # Track consecutive backend errors — retry on transient ones (503, timeout)
+                if not hasattr(self, '_backend_errors'):
+                    self._backend_errors = 0
+                self._backend_errors += 1
+
+                console.print(f"[red]Backend error ({self._backend_errors}/5): {error_check['reason']}[/red]")
+
+                if self._backend_errors >= 5:
+                    console.print(f"[bold red]5 consecutive backend errors — stopping.[/bold red]")
+                    self.target_info["backend_error"] = agent_response
+                    self.target_info["backend_error_reason"] = error_check["reason"]
+                    break
+                else:
+                    console.print(f"[yellow]Retrying in 3s...[/yellow]")
+                    await asyncio.sleep(3)
+                    continue
             
             # Check for echo/parrot behavior
             is_echo = self.is_echo_response(attack_message, agent_response)
