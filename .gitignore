@@ -11,3 +11,4 @@ build/
 *.log
 a2a_redteam_*.json
 .claude/
+*.db
