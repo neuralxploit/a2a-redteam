@@ -3350,7 +3350,7 @@ class A2ARedTeamAgent:
         self.load_historical_knowledge() # Load past successes on startup
         
         # ═══════════════════════════════════════════════════════════════════════════
-        # STRATEGIC MEMORY - DeepSeek-R1 style reasoning state
+        # STRATEGIC MEMORY - Extended reasoning state
         # ═══════════════════════════════════════════════════════════════════════════
         self.strategic_memory = {
             "successful_techniques": [], # Attacks that got compliance/info
@@ -4711,7 +4711,7 @@ class A2ARedTeamAgent:
             system_prompt: Optional system prompt
             force_reasoning: Force chain-of-thought even if self.reasoning is False
             keep_thinking: Keep <thinking> tags in output (for analysis display)
-            deep_reasoning: Use DeepSeek-R1 style extended reasoning with strategic memory
+            deep_reasoning: Use Extended extended reasoning with strategic memory
             max_tokens: Override token limit (for fast analysis)
         """
         import json as json_module
@@ -13346,13 +13346,11 @@ async def main():
     if args.reasoning:
         console.print(Panel(
             "[bold magenta]DEEP REASONING MODE ENABLED[/bold magenta]\n\n"
-            "DeepSeek-R1 style reasoning with:\n"
+            "Extended reasoning with:\n"
             "• Strategic memory tracking\n"
             "• Attack success/failure patterns\n"
             "• Defense behavior modeling\n"
-            "• Hypothesis generation & testing\n"
-            "• Extended token budget (8192)\n"
-            "• Multi-step reasoning chains",
+            "• Full conversation history context",
             title="Deep Reasoning",
             border_style="magenta"
         ))
